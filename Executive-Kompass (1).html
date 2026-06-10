@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Briefing | Ayhan Yüzgülen · Allianz</title>
+    <style>
+        :root { --primary: #0033a0; --bg: #f4f7f6; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+        }
+        h1 { font-size: 1.9rem; margin-bottom: 8px; }
+        .subtitle { font-size: 1.05rem; opacity: 0.9; }
+        
+        .intro { padding: 25px; text-align: center; font-size: 1.05rem; color: #555; border-bottom: 1px solid #eee; }
+
+        .question-block { padding: 30px; border-bottom: 1px solid #eee; }
+        .question-block h2 { color: #222; font-size: 1.2rem; margin-bottom: 20px; }
+        
+        input[type="radio"] { display: none; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            color: #444;
+        }
+        .option-label:hover { border-color: #999; background: #f9fbfd; }
+        
+        input[type="radio"]:checked + .option-label {
+            border-color: var(--primary);
+            background: #f0f4f8;
+            color: var(--primary);
+            font-weight: 600;
+            border-width: 2px;
+            padding: 13px 17px; 
+        }
+
+        .buttons { text-align: center; padding: 40px 20px; background: #f8f9fa; }
+        button {
+            padding: 16px 32px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            width: 100%;
+            max-width: 350px;
+        }
+        button:hover { filter: brightness(1.15); }
+
+        #successContainer {
+            display: none;
+            padding: 40px 30px;
+            background: white;
+            text-align: center;
+        }
+        #successContainer h2 { color: var(--primary); margin-bottom: 15px; }
+        #successContainer p { font-size: 1.05rem; margin-bottom: 25px; color: #444; }
+
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+    <div class="container" id="mainContainer">
+        <header>
+            <h1>Executive Briefing</h1>
+            <p class="subtitle">Effiziente Vorbereitung für Entscheidungsträger.<br>Ayhan Yüzgülen · Allianz Hauptvertretung</p>
+        </header>
+
+        <div class="intro">
+            Um Ihre Zeit in unserem Termin bestmöglich zu nutzen, bitte ich Sie um eine kurze Einschätzung. So stelle ich sicher, dass unsere Zusammenarbeit exakt Ihrem Rhythmus entspricht.
+        </div>
+
+        <form id="briefingForm">
+            <!-- FRAGE 1 -->
+            <div class="question-block">
+                <h2>1. Wie fällen Sie strategische Geschäftsentscheidungen?</h2>
+                <input type="radio" name="q1" id="q1_a" value="BLAU">
+                <label class="option-label" for="q1_a">Datenbasiert: Ich prüfe harte Fakten und Details.</label>
+                
+                <input type="radio" name="q1" id="q1_b" value="ROT">
+                <label class="option-label" for="q1_b">Ergebnisorientiert: Ich schaue auf den ROI und entscheide zügig.</label>
+                
+                <input type="radio" name="q1" id="q1_c" value="GRUEN">
+                <label class="option-label" for="q1_c">Teambasiert: Ich sichere den Konsens mit meinen wichtigsten Vertrauten.</label>
+                
+                <input type="radio" name="q1" id="q1_d" value="GELB">
+                <label class="option-label" for="q1_d">Visionär: Ich suche nach dem innovativsten Ansatz am Markt.</label>
+            </div>
+
+            <!-- FRAGE 2 -->
+            <div class="question-block">
+                <h2>2. Was ist Ihre Priorität bei betrieblichen Risiken (z.B. Ausfall, Haftung)?</h2>
+                <input type="radio" name="q2" id="q2_a" value="BLAU">
+                <label class="option-label" for="q2_a">Lückenlose Verträge und rechtliche Absicherung.</label>
+                
+                <input type="radio" name="q2" id="q2_b" value="ROT">
+                <label class="option-label" for="q2_b">Schnelle Wiederherstellung der Handlungsfähigkeit ohne Bürokratie.</label>
+                
+                <input type="radio" name="q2" id="q2_c" value="GRUEN">
+                <label class="option-label" for="q2_c">Der verlässliche Schutz der Belegschaft und des Lebenswerks.</label>
+                
+                <input type="radio" name="q2" id="q2_d" value="GELB">
+                <label class="option-label" for="q2_d">Smarte Lösungen, die flexibel mit dem Unternehmen mitwachsen.</label>
+            </div>
+
+            <!-- FRAGE 3 -->
+            <div class="question-block">
+                <h2>3. Was ist Ihr Leitgedanke beim Thema Firmen- und Privatvermögen?</h2>
+                <input type="radio" name="q3" id="q3_a" value="BLAU">
+                <label class="option-label" for="q3_a">Steuerliche Optimierung und langfristige Planbarkeit.</label>
+                
+                <input type="radio" name="q3" id="q3_b" value="ROT">
+                <label class="option-label" for="q3_b">Maximaler Ertrag. Unproduktives Kapital ist verschenktes Wachstum.</label>
+                
+                <input type="radio" name="q3" id="q3_c" value="GRUEN">
+                <label class="option-label" for="q3_c">Der Aufbau von sicheren Rücklagen für Krisenzeiten.</label>
+                
+                <input type="radio" name="q3" id="q3_d" value="GELB">
+                <label class="option-label" for="q3_d">Moderne, breit gefächerte Investments abseits des Standards.</label>
+            </div>
+
+            <!-- FRAGE 4 -->
+            <div class="question-block">
+                <h2>4. Wie binden Sie Schlüsselpersonal an Ihr Unternehmen?</h2>
+                <input type="radio" name="q4" id="q4_a" value="BLAU">
+                <label class="option-label" for="q4_a">Durch transparente Zielvereinbarungen und klare Leistungssysteme.</label>
+                
+                <input type="radio" name="q4" id="q4_b" value="ROT">
+                <label class="option-label" for="q4_b">Durch überdurchschnittliches Gehalt und schnelle Aufstiegschancen.</label>
+                
+                <input type="radio" name="q4" id="q4_c" value="GRUEN">
+                <label class="option-label" for="q4_c">Durch soziale Benefits (Gesundheit/Vorsorge) und ein starkes Wir-Gefühl.</label>
+                
+                <input type="radio" name="q4" id="q4_d" value="GELB">
+                <label class="option-label" for="q4_d">Durch viel Freiraum, Verantwortung und eine moderne Unternehmenskultur.</label>
+            </div>
+
+            <!-- FRAGE 5 -->
+            <div class="question-block">
+                <h2>5. Was bremst Ihr Unternehmen im Alltag am stärksten aus?</h2>
+                <input type="radio" name="q5" id="q5_a" value="BLAU">
+                <label class="option-label" for="q5_a">Fehlerhafte Prozesse und Intransparenz.</label>
+                
+                <input type="radio" name="q5" id="q5_b" value="ROT">
+                <label class="option-label" for="q5_b">Das operative Tagesgeschäft, das Zeit für Strategie raubt.</label>
+                
+                <input type="radio" name="q5" id="q5_c" value="GRUEN">
+                <label class="option-label" for="q5_c">Interne Reibungsverluste oder Unruhe im Team.</label>
+                
+                <input type="radio" name="q5" id="q5_d" value="GELB">
+                <label class="option-label" for="q5_d">Starre Vorgaben und Bedenkenträger, die Innovationen blockieren.</label>
+            </div>
+
+            <!-- FRAGE 6 -->
+            <div class="question-block">
+                <h2>6. Was erwarten Sie von einem externen Dienstleister im laufenden Betrieb?</h2>
+                <input type="radio" name="q6" id="q6_a" value="BLAU">
+                <label class="option-label" for="q6_a">Strukturierte Reportings und messbare Ergebnisse.</label>
+                
+                <input type="radio" name="q6" id="q6_b" value="ROT">
+                <label class="option-label" for="q6_b">Geräuschlose Umsetzung im Hintergrund. Ergebnisse statt Diskussionen.</label>
+                
+                <input type="radio" name="q6" id="q6_c" value="GRUEN">
+                <label class="option-label" for="q6_c">Einen festen, verlässlichen Ansprechpartner für alle Fragen.</label>
+                
+                <input type="radio" name="q6" id="q6_d" value="GELB">
+                <label class="option-label" for="q6_d">Proaktive Impulse und regelmäßige Updates zu neuen Markttrends.</label>
+            </div>
+
+            <!-- FRAGE 7 -->
+            <div class="question-block">
+                <h2>7. Wie soll eine perfekte Konzept-Präsentation aussehen?</h2>
+                <input type="radio" name="q7" id="q7_a" value="BLAU">
+                <label class="option-label" for="q7_a">Tiefgehend und logisch. Alle Zahlen müssen nachvollziehbar sein.</label>
+                
+                <input type="radio" name="q7" id="q7_b" value="ROT">
+                <label class="option-label" for="q7_b">Kompakt und ergebnisorientiert (One-Pager) für schnelle Entscheidungen.</label>
+                
+                <input type="radio" name="q7" id="q7_c" value="GRUEN">
+                <label class="option-label" for="q7_c">Ganzheitlich. Das Gesamtbild des Unternehmens muss im Fokus stehen.</label>
+                
+                <input type="radio" name="q7" id="q7_d" value="GELB">
+                <label class="option-label" for="q7_d">Visuell und visionär. Der zukünftige Nutzen muss sofort erkennbar sein.</label>
+            </div>
+
+            <div class="buttons" id="submitArea">
+                <button type="button" onclick="generatePDF()">Auswertung als PDF generieren</button>
+            </div>
+        </form>
+
+        <div id="successContainer">
+            <h2>Ihr Dokument wurde erstellt</h2>
+            <p>Die Auswertung wurde als PDF-Datei auf Ihrem Gerät gespeichert.</p>
+            <p>Bitte leiten Sie dieses Dokument für eine punktgenaue Vorbereitung an mich weiter:</p>
+            <a href="mailto:ayhan.yuezguelen@allianz.de?subject=Executive%20Briefing%20Auswertung" style="display:inline-block; padding: 14px 28px; background: var(--primary); color: white; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 10px;">E-Mail an Ayhan Yüzgülen öffnen</a>
+        </div>
+    </div>
+
+    <script>
+        function generatePDF() {
+            const form = document.getElementById('briefingForm');
+            const formData = new FormData(form);
+            
+            let counts = { "BLAU": 0, "ROT": 0, "GRUEN": 0, "GELB": 0 };
+            let answered = 0;
+
+            for (let [key, value] of formData.entries()) {
+                if (counts[value] !== undefined) counts[value]++;
+                answered++;
+            }
+
+            if (answered < 7) {
+                alert("Bitte beantworten Sie alle 7 Fragen, damit die Auswertung präzise ist.");
+                return;
+            }
+
+            let total = 7;
+            let percent = {
+                BLAU: Math.round((counts.BLAU / total) * 100),
+                ROT: Math.round((counts.ROT / total) * 100),
+                GRUEN: Math.round((counts.GRUEN / total) * 100),
+                GELB: Math.round((counts.GELB / total) * 100)
+            };
+
+            let dominant = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+
+            const profiles = {
+                "BLAU": {
+                    name: "Der Analytiker",
+                    color: [0, 51, 160],
+                    text: "Sie schätzen fundierte Analysen und Detailtiefe. Im Termin fokussieren wir uns auf messbare Fakten, wasserdichte Verträge und eine logische, mathematische Herangehensweise. Oberflächliche Standard-Pitches entfallen für Sie."
+                },
+                "ROT": {
+                    name: "Der Macher",
+                    color: [178, 34, 34],
+                    text: "Ihre Zeit ist wertvoll. Sie erhalten im Termin kompakte Zusammenfassungen (One-Pager). Der Fokus liegt kompromisslos auf Effizienz, schnellen Entscheidungen und der Optimierung Ihres Return on Investment."
+                },
+                "GRUEN": {
+                    name: "Der Netzwerker",
+                    color: [39, 174, 96],
+                    text: "Ihnen ist Verlässlichkeit und Ganzheitlichkeit wichtig. Wir betrachten Ihr Unternehmen nicht als bloße Excel-Tabelle, sondern als Konstrukt, das Sie, Ihr Team und Ihr Lebenswerk schützt. Sicherheit steht an erster Stelle."
+                },
+                "GELB": {
+                    name: "Der Visionär",
+                    color: [218, 165, 32],
+                    text: "Sie benötigen Weitblick und strategisches Wachstum. Veraltete Branchenstandards lassen wir hinter uns. Wir fokussieren uns auf smarte, hochflexible Lösungsansätze, die mit Ihren unternehmerischen Zielen wachsen."
+                }
+            };
+
+            const domData = profiles[dominant];
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // 1. URKUNDEN-RAHMEN ZEICHNEN
+            doc.setDrawColor(0, 51, 160); // Allianz Blau
+            doc.setLineWidth(0.8);
+            doc.rect(10, 10, 190, 277);
+            doc.setLineWidth(0.2);
+            doc.rect(12, 12, 186, 273);
+
+            let y = 35;
+
+            // 2. HEADER ZENTRIERT
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(24);
+            doc.setTextColor(0, 51, 160);
+            doc.text("EXECUTIVE BRIEFING", 105, y, { align: "center" });
+            
+            y += 10;
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(12);
+            doc.setTextColor(100, 100, 100);
+            doc.text("A U S W E R T U N G S D O K U M E N T", 105, y, { align: "center" });
+            
+            y += 12;
+            doc.setFontSize(10);
+            const today = new Date().toLocaleDateString('de-DE');
+            doc.text("Erstelldatum: " + today, 105, y, { align: "center" });
+
+            // Trennlinie
+            y += 15;
+            doc.setDrawColor(220, 220, 220);
+            doc.line(40, y, 170, y);
+            y += 20;
+
+            // 3. HAUPT-PROFIL (Zentriert & Groß)
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(14);
+            doc.setTextColor(50, 50, 50);
+            doc.text("IHR PRIMÄRES BERATUNGSPROFIL:", 105, y, { align: "center" });
+            
+            y += 15;
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(26);
+            doc.setTextColor(domData.color[0], domData.color[1], domData.color[2]);
+            doc.text(domData.name.toUpperCase(), 105, y, { align: "center" });
+            
+            y += 15;
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(12);
+            doc.setTextColor(60, 60, 60);
+            let splitSummary = doc.splitTextToSize(domData.text, 140);
+            doc.text(splitSummary, 105, y, { align: "center" });
+            
+            // Abstände für das Diagramm anpassen
+            y += (splitSummary.length * 6) + 15;
+
+            // Trennlinie
+            doc.setDrawColor(220, 220, 220);
+            doc.line(40, y, 170, y);
+            y += 20;
+
+            // 4. BALKENDIAGRAMM (Prozentuale Verteilung)
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(14);
+            doc.setTextColor(50, 50, 50);
+            doc.text("GEWICHTUNG IHRER ANFORDERUNGEN:", 105, y, { align: "center" });
+            y += 18;
+
+            const drawBar = (label, percentage, color, yPos) => {
+                // Label
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(11);
+                doc.setTextColor(color[0], color[1], color[2]);
+                doc.text(`${label} (${percentage}%)`, 45, yPos);
+                
+                // Hintergrund-Balken (Grau)
+                doc.setFillColor(240, 240, 240);
+                doc.rect(45, yPos + 3, 120, 5, "F");
+                
+                // Farbiger Balken
+                let barWidth = (percentage / 100) * 120;
+                if(barWidth > 0) {
+                    doc.setFillColor(color[0], color[1], color[2]);
+                    doc.rect(45, yPos + 3, barWidth, 5, "F");
+                }
+            };
+
+            // Abstände der Balken komprimiert
+            drawBar("Der Macher (Effizienz & ROI)", percent.ROT, [178, 34, 34], y);
+            y += 16;
+            drawBar("Der Analytiker (Struktur & Fakten)", percent.BLAU, [0, 51, 160], y);
+            y += 16;
+            drawBar("Der Netzwerker (Sicherheit & Team)", percent.GRUEN, [39, 174, 96], y);
+            y += 16;
+            drawBar("Der Visionär (Innovation & Vision)", percent.GELB, [218, 165, 32], y);
+
+            // 5. FOOTER (Fest am unteren Rand verankert)
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(9);
+            doc.setTextColor(150, 150, 150);
+            doc.text("Dieses Dokument dient der effizienten Vorbereitung unseres strategischen Termins.", 105, 275, { align: "center" });
+            doc.text("Ayhan Yüzgülen · Allianz Hauptvertretung", 105, 280, { align: "center" });
+
+            // PDF Speichern
+            let fileName = "Executive_Briefing_Auswertung.pdf";
+            doc.save(fileName);
+
+            // UI anpassen
+            document.getElementById('briefingForm').style.display = 'none';
+            document.getElementById('successContainer').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
